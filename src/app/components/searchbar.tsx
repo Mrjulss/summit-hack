@@ -4,6 +4,8 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaMicrophone, FaMicrophoneAlt } from 'react-icons/fa';
 import { speechService } from '../services/speech-service';
+import { UserSelection } from './user-selection';
+import { UserType } from '../dashboard/types/userTypes';
 
 const Alert: React.FC<{ message: string; type: 'error' | 'info'; onClose: () => void }> = ({ 
   message, 
@@ -30,6 +32,7 @@ export default function Searchbar() {
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState<'error' | 'info'>('error');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [currentUser, setCurrentUser] = useState<UserType | null>(null);
 
   // Check for API key on component mount
   useEffect(() => {
@@ -124,10 +127,12 @@ export default function Searchbar() {
           onClose={() => setAlertMessage('')} 
         />
       )}
+      <div className='flex flex-row gap-1'>
+      <UserSelection onUserSelected={setCurrentUser}/> 
       <div className="flex items-center">
         <div className="flex items-center bg-[#002C5F] p-2 px-3 rounded-full w-96">
           <span className="text-white mr-2 cursor-pointer" onClick={handleSearchClick}>
-            <Link href={`/dashboard?query=${encodeURIComponent(searchQuery)}`}>
+            <Link href={`/dashboard?query=${encodeURIComponent(searchQuery)}?userId=${currentUser?.id}`}>
                 <FaSearch size={24} />
             </Link>
           </span>
@@ -149,6 +154,7 @@ export default function Searchbar() {
         >
           {isListening ? <FaMicrophoneAlt size={28} /> : <FaMicrophone size={28} />}
         </span>
+      </div>
       </div>
     </div>
   );

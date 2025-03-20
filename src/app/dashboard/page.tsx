@@ -156,7 +156,7 @@ const Dashboard = () => {
             </div>
 
             <div className="sticky bottom-0 p-1 backdrop-blur-sm bg-white border-t border-gray-100">
-                <Searchbar />
+                <Searchbar/>
             </div>
         </div>
     );
