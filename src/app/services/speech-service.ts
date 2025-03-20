@@ -15,6 +15,7 @@ class SpeechService {
   }
 
   async startRecording(): Promise<void> {
+    console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY)
     try {
       this.audioChunks = [];
       this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });

@@ -4,7 +4,6 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaMicrophone, FaMicrophoneAlt } from 'react-icons/fa';
 import { speechService } from '../services/speech-service';
-import { OPENAI_API_KEY } from '../config/env';
 
 const Alert: React.FC<{ message: string; type: 'error' | 'info'; onClose: () => void }> = ({ 
   message, 
@@ -18,10 +17,8 @@ const Alert: React.FC<{ message: string; type: 'error' | 'info'; onClose: () => 
     return () => clearTimeout(timer);
   }, [onClose]);
 
-  const bgColor = type === 'error' ? 'bg-red-800' : 'bg-blue-600';
-
   return (
-    <div className={`fixed top-[66%] left-1/2 transform -translate-x-1/2 ${bgColor} text-white px-4 py-2 rounded shadow-md z-50`}>
+    <div className={`fixed top-[66%] left-1/2 transform -translate-x-1/2 text-[#DE3919] px-4 py-2 rounded shadow-md z-50`}>
       {message}
     </div>
   );
@@ -36,7 +33,7 @@ export default function Searchbar() {
 
   // Check for API key on component mount
   useEffect(() => {
-    if (!OPENAI_API_KEY) {
+    if (!process.env.NEXT_PUBLIC_OPENAI_API_KEY) {
       setAlertMessage('OpenAI API key missing. Voice search will not work.');
       setAlertType('error');
     }
@@ -44,7 +41,7 @@ export default function Searchbar() {
 
   const handleAudioClick = async () => {
     // Don't allow recording if API key is missing
-    if (!OPENAI_API_KEY) {
+    if (!process.env.NEXT_PUBLIC_OPENAI_API_KEY) {
       setAlertMessage('OpenAI API key is missing. Check your environment variables.');
       setAlertType('error');
       return;
@@ -64,7 +61,6 @@ export default function Searchbar() {
       setAlertType('info');
       await speechService.startRecording();
     } catch (error) {
-      console.error('Failed to start recording:', error);
       setAlertMessage('Failed to access microphone');
       setAlertType('error');
       setIsListening(false);
@@ -94,7 +90,6 @@ export default function Searchbar() {
   };
 
   const handleSearchClick = () => {
-    console.log(process.env)
     if (!searchQuery.trim()) {
       setAlertMessage('Please enter a search term.');
       setAlertType('error');
@@ -147,10 +142,10 @@ export default function Searchbar() {
           </div>
         </div>
         <span
-          className={`ml-4 text-[#002C5F] text-3xl cursor-pointer ${!OPENAI_API_KEY || isProcessing ? 'opacity-50' : ''}`}
+          className={`ml-4 text-[#002C5F] text-3xl cursor-pointer ${!process.env.NEXT_PUBLIC_OPENAI_API_KEY || isProcessing ? 'opacity-50' : ''}`}
           onClick={handleAudioClick}
-          title={!OPENAI_API_KEY ? "API key missing" : isListening ? "Stop listening" : "Start voice search"}
-          style={{ cursor: !OPENAI_API_KEY ? 'not-allowed' : 'pointer' }}
+          title={!process.env.NEXT_PUBLIC_OPENAI_API_KEY ? "API key missing" : isListening ? "Stop listening" : "Start voice search"}
+          style={{ cursor: !process.env.NEXT_PUBLIC_OPENAI_API_KEY ? 'not-allowed' : 'pointer' }}
         >
           {isListening ? <FaMicrophoneAlt size={28} /> : <FaMicrophone size={28} />}
         </span>
