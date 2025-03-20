@@ -1,21 +1,27 @@
 'use client'
 
-'use client'
-
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaMicrophone, FaMicrophoneAlt } from 'react-icons/fa';
+import { speechService } from '../services/speech-service';
+import { OPENAI_API_KEY } from '../config/env';
 
-const Alert: React.FC<{ message: string; onClose: () => void }> = ({ message, onClose }) => {
+const Alert: React.FC<{ message: string; type: 'error' | 'info'; onClose: () => void }> = ({ 
+  message, 
+  type, 
+  onClose 
+}) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 2000);
+    }, 3000);
     return () => clearTimeout(timer);
   }, [onClose]);
 
+  const bgColor = type === 'error' ? 'bg-red-800' : 'bg-blue-600';
+
   return (
-    <div className="fixed top-[66%] left-1/2 transform -translate-x-1/2 bg-red-800 text-white px-4 py-2 rounded shadow-md z-50">
+    <div className={`fixed top-[66%] left-1/2 transform -translate-x-1/2 ${bgColor} text-white px-4 py-2 rounded shadow-md z-50`}>
       {message}
     </div>
   );
@@ -25,24 +31,103 @@ export default function Searchbar() {
   const [isListening, setIsListening] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
+  const [alertType, setAlertType] = useState<'error' | 'info'>('error');
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleAudioClick = () => {
-    setIsListening((prev) => !prev);
-    // Add logic to start/stop listening here
+  // Check for API key on component mount
+  useEffect(() => {
+    if (!OPENAI_API_KEY) {
+      setAlertMessage('OpenAI API key missing. Voice search will not work.');
+      setAlertType('error');
+    }
+  }, []);
+
+  const handleAudioClick = async () => {
+    // Don't allow recording if API key is missing
+    if (!OPENAI_API_KEY) {
+      setAlertMessage('OpenAI API key is missing. Check your environment variables.');
+      setAlertType('error');
+      return;
+    }
+
+    if (isListening) {
+      await stopListening();
+    } else {
+      await startListening();
+    }
+  };
+
+  const startListening = async () => {
+    try {
+      setIsListening(true);
+      setAlertMessage('Listening...');
+      setAlertType('info');
+      await speechService.startRecording();
+    } catch (error) {
+      console.error('Failed to start recording:', error);
+      setAlertMessage('Failed to access microphone');
+      setAlertType('error');
+      setIsListening(false);
+    }
+  };
+
+  const stopListening = async () => {
+    try {
+      setIsListening(false);
+      setIsProcessing(true);
+      setAlertMessage('Processing audio...');
+      setAlertType('info');
+      
+      const audioBlob = await speechService.stopRecording();
+      const transcription = await speechService.transcribeAudio(audioBlob);
+      
+      setSearchQuery(transcription);
+      setAlertMessage('Audio transcribed successfully');
+      setAlertType('info');
+    } catch (error: any) {
+      console.error('Transcription error:', error);
+      setAlertMessage(error.message || 'Failed to transcribe audio');
+      setAlertType('error');
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const handleSearchClick = () => {
+    console.log(process.env)
     if (!searchQuery.trim()) {
       setAlertMessage('Please enter a search term.');
+      setAlertType('error');
       return;
     }
     console.log('Searching for:', searchQuery);
   };
 
+  // Handle keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Press "/" to focus on search
+      if (e.key === '/' && !isListening) {
+        const searchInput = document.querySelector('input[type="text"]') as HTMLInputElement;
+        if (searchInput) {
+          e.preventDefault();
+          searchInput.focus();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isListening]);
+
   return (
     <div className="relative flex flex-col items-center">
       {alertMessage && (
-        <Alert message={alertMessage} onClose={() => setAlertMessage('')} />
+        <Alert 
+          message={alertMessage} 
+          type={alertType}
+          onClose={() => setAlertMessage('')} 
+        />
       )}
       <div className="flex items-center">
         <div className="flex items-center bg-[#002C5F] p-2 px-3 rounded-full w-96">
@@ -54,7 +139,7 @@ export default function Searchbar() {
           <div className="flex items-center bg-white rounded-full px-4 py-3 w-full">
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search or press '/' to focus"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="bg-transparent outline-none text-gray-800 w-full"
@@ -62,8 +147,10 @@ export default function Searchbar() {
           </div>
         </div>
         <span
-          className="ml-4 text-[#002C5F] text-3xl cursor-pointer"
+          className={`ml-4 text-[#002C5F] text-3xl cursor-pointer ${!OPENAI_API_KEY || isProcessing ? 'opacity-50' : ''}`}
           onClick={handleAudioClick}
+          title={!OPENAI_API_KEY ? "API key missing" : isListening ? "Stop listening" : "Start voice search"}
+          style={{ cursor: !OPENAI_API_KEY ? 'not-allowed' : 'pointer' }}
         >
           {isListening ? <FaMicrophoneAlt size={28} /> : <FaMicrophone size={28} />}
         </span>
