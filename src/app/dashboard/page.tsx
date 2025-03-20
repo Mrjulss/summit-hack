@@ -1,21 +1,14 @@
 'use client'
 
-import Link from "next/link";
-import { useState } from "react";
+import { useSearchParams } from 'next/navigation';
 
 export default function Dashboard() {
-    const [count, setCount] = useState(0);
-
+    const searchParams = useSearchParams();
+    const query = searchParams.get('query');
 
     return (
-        <div className="flex flex-col">
-            This is the dashboard!
-            <p>You clicked {count} times</p>
-            <button onClick={() => setCount(count + 1)}>
-                Click me
-            </button>
-
-            <Link href="/">back to main page</Link>
+        <div className='flex justify-center items-center min-h-max'>
+            {query}
         </div>
     );
 }
