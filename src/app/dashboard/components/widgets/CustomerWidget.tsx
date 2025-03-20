@@ -15,7 +15,7 @@ export function CustomerWidget(customer: CustomerType) {
     return (
         <WidgetFrame>
             <div className="flex items-center gap-3">
-                <FiUser className="w-5 h-5 text-[#DE3919]" />
+                <FiUser className="w-4 h-4 text-[#DE3919]" />
                 <WidgetTitle>
                     {customer.name}
                 </WidgetTitle>
@@ -23,28 +23,28 @@ export function CustomerWidget(customer: CustomerType) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 {/* Age */}
                 <div className="flex items-center gap-3 text-[#002C5F]">
-                    <FiCalendar className="w-5 h-5" />
+                    <FiCalendar className="w-4 h-4" />
                     <span className="font-medium">Age:</span>
                     <span>{customer.age}</span>
                 </div>
 
                 {/* Location */}
                 <div className="flex items-center gap-3 text-[#002C5F]">
-                    <FiGlobe className="w-5 h-5" />
+                    <FiGlobe className="w-4 h-4" />
                     <span className="font-medium">Location:</span>
                     <ReactCountryFlag sizes="2xl" countryCode={customer.location} svg />
                 </div>
 
                 {/* Profession */}
                 <div className="flex items-center gap-3 text-[#002C5F]">
-                    <FiBriefcase className="w-5 h-5" />
+                    <FiBriefcase className="w-4 h-4" />
                     <span className="font-medium">Profession:</span>
                     <span className="truncate">{customer.profession}</span>
                 </div>
 
                 {/* Source of Wealth */}
                 <div className="flex items-center gap-3 text-[#002C5F]">
-                    <FiDollarSign className="w-5 h-5" />
+                    <FiDollarSign className="w-4 h-4" />
                     <span className="font-medium">Wealth Source:</span>
                     <span className="truncate">{customer.source_of_wealth}</span>
                 </div>
@@ -52,7 +52,7 @@ export function CustomerWidget(customer: CustomerType) {
                 {/* Risk Aversion Meter */}
                 <div className="col-span-full mt-4">
                     <div className="flex items-center gap-3 text-[#002C5F]">
-                        <FiActivity className="w-5 h-5" />
+                        <FiActivity className="w-4 h-4" />
                         <span className="font-medium">Risk Aversion:</span>
                         <div className="flex gap-1">
                             {[...Array(5)].map((_, i) => (
