@@ -9,7 +9,7 @@ const MyComponent = () => {
     useEffect(() => {
         const response = [
             {
-              type: "news", // Example type
+              type: "news",
               content: {
                 headlines: [
                   { headline: "Breaking News", url: "https://news.com" },
@@ -29,11 +29,31 @@ const MyComponent = () => {
                 ],
               },
             },
+            {
+                type: "customer",
+                content: {
+                    name: "John Doe",
+                    age: 34,
+                    risk_aversity: 3,
+                    location: "DE",
+                    profession: "Sports Club Owner",
+                    source_of_wealth: "self earned"
+                }
+            },
+            {
+                type: "kpi",
+                content: {
+                    company: "Nvidia",
+                    title: "Market Cap",
+                    value: 10000000,
+                    unit: "%"
+                }
+            }
           ];
 
         // Process the response to generate the widgets
         const widgetElements = WidgetProcessor.responseToWidgets(response);
-        setWidgets(widgetElements); // Set the processed widgets to state
+        setWidgets(widgetElements); 
     }, []);
 
     return (

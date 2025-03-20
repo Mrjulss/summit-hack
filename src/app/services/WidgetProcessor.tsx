@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { Widget } from "../dashboard/components/Widget";
+import { WidgetConverter } from "../dashboard/components/WidgetConverter";
 import { WidgetType } from "../dashboard/types/widgetTypes";
 
 class WidgetProcessor {
@@ -23,7 +23,7 @@ class WidgetProcessor {
 
   private getWidget(item: { type: WidgetType; content: any }): JSX.Element | null {
     // Process item based on its type
-    return <Widget type={item.type} content={item.content}/>
+    return <WidgetConverter type={item.type} content={item.content}/>
   }
 }
 

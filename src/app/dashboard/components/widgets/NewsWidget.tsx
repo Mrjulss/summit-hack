@@ -1,4 +1,6 @@
 import React from "react";
+import { WidgetFrame } from "../WidgetFrame";
+import { WidgetTitle } from "../WidgetTitle";
 
 interface Headline {
   headline: string;
@@ -11,24 +13,27 @@ interface NewsWidgetProps {
 
 export function NewsWidget({ headlines = [] }: NewsWidgetProps) {
   return (
-    <div>
-      <div>News</div>
-      <div className="flex flex-col gap-2">  {/* Wrapper for news items */}
+    <WidgetFrame>
+      <WidgetTitle>Relevant News</WidgetTitle>
+      <div className="flex flex-col gap-4 p-4">
         {headlines.map((item, index) => (
-          <div key={index} className="flex flex-row gap-2 p-4 border-b">
-            <h3 className="text-xl font-bold">{item.headline}</h3>
+          <div
+            key={index}
+            className="flex flex-col bg-white shadow-md p-4 rounded-lg hover:shadow-lg transition-shadow"
+          >
+            <h3 className="text-lg font-semibold text-gray-900">{item.headline}</h3>
             <a
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
+              className="text-[#002C5F] hover:text-blue-800 transition-colors text-sm mt-1"
             >
-              Read more
+              Read more →
             </a>
           </div>
         ))}
       </div>
-    </div>
+    </WidgetFrame>
   );
 }
 

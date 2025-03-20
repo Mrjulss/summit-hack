@@ -1,5 +1,8 @@
 import React from 'react';
 import { LineChart } from '@mui/x-charts';
+import { Itim } from 'next/font/google';
+import { WidgetFrame } from '../WidgetFrame';
+import { WidgetTitle } from '../WidgetTitle';
 
 interface Timeseries {
     timestamps: number[];
@@ -12,24 +15,41 @@ interface TimeseriesWidgetProps {
 }
 
 export function TimeseriesWidget({ data, title }: TimeseriesWidgetProps) {
-    console.log(data); 
-    if(
-        !Array.isArray(data[0].timestamps) ||
-        !Array.isArray(data[0].values)
+    // Validate all timeseries entries
+    if (
+        data.length === 0 ||
+        !data.every(item => 
+            Array.isArray(item.timestamps) && 
+            Array.isArray(item.values)
+        )
     ) {
         return <div>Invalid data</div>;
     }
 
+    // Assuming all timeseries share the same timestamps
+    const xAxisData = data[0].timestamps.map(t => new Date(t * 1000));
+
     return (
-        <div>
-            <h1>{title}</h1>
+        <WidgetFrame>
+            <WidgetTitle>
+                {title}
+            </WidgetTitle>
+            <div className='items-center'>
             <LineChart
-                xAxis={[{ data: data[0].timestamps.map((timestamp) => new Date(timestamp * 1000)) }]}
-                series={[{ data: data[0].values }]}
-                width={500}
-                height={300}
-            >
-            </LineChart>
-        </div>
+                xAxis={[{ 
+                    data: xAxisData,
+                    scaleType: 'time' 
+                }]}
+                series={data.map((series, index) => ({
+                    data: series.values,
+                    label: `Series ${index + 1}`,
+                }))}
+                width={350}
+                height={200}
+                colors={['#DE3919']} // Single color for all series
+            
+            />
+            </div>
+        </WidgetFrame>
     );
 }
