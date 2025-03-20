@@ -1,6 +1,6 @@
 import React from "react";
-import { WidgetFrame } from "../WidgetFrame";
-import { WidgetTitle } from "../WidgetTitle";
+import { WidgetFrame } from "./WidgetFrame";
+import { WidgetTitle } from "./WidgetTitle";
 
 interface Headline {
   headline: string;

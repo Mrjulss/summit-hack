@@ -1,8 +1,8 @@
-import { WidgetType } from "../types/widgetTypes";
-import { CustomerWidget } from "./widgets/CustomerWidget";
-import { KpiWidget } from "./widgets/KpiWidget";
-import { NewsWidget } from "./widgets/NewsWidget";
-import { TimeseriesWidget } from "./widgets/TimeseriesWidget";
+import { WidgetType } from "../../types/widgetTypes";
+import { CustomerWidget } from "./CustomerWidget";
+import { KpiWidget } from "./KpiWidget";
+import { NewsWidget } from "./NewsWidget";
+import { TimeseriesWidget } from "./TimeseriesWidget";
 
 interface WidgetProps {
     type: WidgetType;
@@ -17,7 +17,7 @@ export function WidgetConverter({ type, content, ...props }: WidgetProps) {
       case "news":
         return <NewsWidget headlines={content.headlines} {...props}/>;
       case "kpi":
-        return <KpiWidget {...props} />;
+        return <KpiWidget {...content} {...props} />;
       case "timeseries":
         return <TimeseriesWidget data={content.data} title={content.title} {...props} />;
       default:

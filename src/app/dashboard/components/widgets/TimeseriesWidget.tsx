@@ -1,11 +1,11 @@
 import React from 'react';
 import { LineChart } from '@mui/x-charts';
 import { Itim } from 'next/font/google';
-import { WidgetFrame } from '../WidgetFrame';
-import { WidgetTitle } from '../WidgetTitle';
+import { WidgetFrame } from './WidgetFrame';
+import { WidgetTitle } from './WidgetTitle';
 
 interface Timeseries {
-    timestamps: number[];
+    timestamps: Date[];
     values: number[];
 }
 
@@ -27,7 +27,7 @@ export function TimeseriesWidget({ data, title }: TimeseriesWidgetProps) {
     }
 
     // Assuming all timeseries share the same timestamps
-    const xAxisData = data[0].timestamps.map(t => new Date(t * 1000));
+    const xAxisData = data[0].timestamps;
 
     return (
         <WidgetFrame>
@@ -44,7 +44,7 @@ export function TimeseriesWidget({ data, title }: TimeseriesWidgetProps) {
                     data: series.values,
                     label: `Series ${index + 1}`,
                 }))}
-                width={350}
+                width={300}
                 height={200}
                 colors={['#DE3919']} // Single color for all series
             

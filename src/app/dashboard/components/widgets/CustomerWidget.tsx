@@ -1,6 +1,6 @@
 import { CustomerType } from "../../types/customerTypes";
-import { WidgetFrame } from "../WidgetFrame";
-import { WidgetTitle } from "../WidgetTitle";
+import { WidgetFrame } from "./WidgetFrame";
+import { WidgetTitle } from "./WidgetTitle";
 import {
     FiUser,
     FiCalendar,
@@ -49,16 +49,16 @@ export function CustomerWidget(customer: CustomerType) {
                     <span className="truncate">{customer.source_of_wealth}</span>
                 </div>
 
-                {/* Risk Aversity Meter */}
+                {/* Risk Aversion Meter */}
                 <div className="col-span-full mt-4">
                     <div className="flex items-center gap-3 text-[#002C5F]">
                         <FiActivity className="w-5 h-5" />
-                        <span className="font-medium">Risk Aversity:</span>
+                        <span className="font-medium">Risk Aversion:</span>
                         <div className="flex gap-1">
                             {[...Array(5)].map((_, i) => (
                                 <div
                                     key={i}
-                                    className={`w-3 h-3 rounded-full ${i < customer.risk_aversity
+                                    className={`w-3 h-3 rounded-full ${i < customer.risk_aversion
                                             ? "bg-[#DE3919]"
                                             : "bg-gray-300"
                                         }`}

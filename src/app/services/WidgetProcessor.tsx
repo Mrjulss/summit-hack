@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { WidgetConverter } from "../dashboard/components/WidgetConverter";
+import { WidgetConverter } from "../dashboard/components/widgets/WidgetConverter";
 import { WidgetType } from "../dashboard/types/widgetTypes";
 
 class WidgetProcessor {
