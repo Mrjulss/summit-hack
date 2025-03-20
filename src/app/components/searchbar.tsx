@@ -26,7 +26,11 @@ const Alert: React.FC<{ message: string; type: 'error' | 'info'; onClose: () => 
   );
 };
 
-export default function Searchbar() {
+interface SearchbarProps {
+  userDropdownPosition?: 'top' | 'bottom';
+}
+
+export default function Searchbar({ userDropdownPosition = 'bottom' }: SearchbarProps) {
   const [isListening, setIsListening] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
@@ -127,34 +131,37 @@ export default function Searchbar() {
           onClose={() => setAlertMessage('')} 
         />
       )}
-      <div className='flex flex-row gap-1'>
-      <UserSelection onUserSelected={setCurrentUser}/> 
-      <div className="flex items-center">
-        <div className="flex items-center bg-[#002C5F] p-2 px-3 rounded-full w-96">
-          <span className="text-white mr-2 cursor-pointer" onClick={handleSearchClick}>
-            <Link href={`/dashboard?query=${encodeURIComponent(searchQuery)}?userId=${currentUser?.id}`}>
-                <FaSearch size={24} />
-            </Link>
-          </span>
-          <div className="flex items-center bg-white rounded-full px-4 py-2 w-full">
-            <input
-              type="text"
-              placeholder="Search or press '/' to focus"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-transparent outline-none text-gray-800 w-full"
-            />
+      <div className="flex items-center justify-center">
+        <UserSelection 
+          onUserSelected={setCurrentUser} 
+          dropdownPosition={userDropdownPosition}
+        /> 
+        <div className="flex items-center">
+          <div className="flex items-center bg-[#002C5F] p-2 px-3 rounded-full w-96">
+            <span className="text-white mr-2 cursor-pointer" onClick={handleSearchClick}>
+              <Link href={`/dashboard?query=${encodeURIComponent(searchQuery)}${currentUser?.id ? `&userId=${currentUser.id}` : ''}`}>
+                  <FaSearch size={24} />
+              </Link>
+            </span>
+            <div className="flex items-center bg-white rounded-full px-4 py-2 w-full">
+              <input
+                type="text"
+                placeholder="Search or press '/' to focus"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="bg-transparent outline-none text-gray-800 w-full"
+              />
+            </div>
           </div>
+          <span
+            className={`ml-4 text-[#002C5F] text-3xl cursor-pointer ${!process.env.NEXT_PUBLIC_OPENAI_API_KEY || isProcessing ? 'opacity-50' : ''}`}
+            onClick={handleAudioClick}
+            title={!process.env.NEXT_PUBLIC_OPENAI_API_KEY ? "API key missing" : isListening ? "Stop listening" : "Start voice search"}
+            style={{ cursor: !process.env.NEXT_PUBLIC_OPENAI_API_KEY ? 'not-allowed' : 'pointer' }}
+          >
+            {isListening ? <FaMicrophoneAlt size={28} /> : <FaMicrophone size={28} />}
+          </span>
         </div>
-        <span
-          className={`ml-4 text-[#002C5F] text-3xl cursor-pointer ${!process.env.NEXT_PUBLIC_OPENAI_API_KEY || isProcessing ? 'opacity-50' : ''}`}
-          onClick={handleAudioClick}
-          title={!process.env.NEXT_PUBLIC_OPENAI_API_KEY ? "API key missing" : isListening ? "Stop listening" : "Start voice search"}
-          style={{ cursor: !process.env.NEXT_PUBLIC_OPENAI_API_KEY ? 'not-allowed' : 'pointer' }}
-        >
-          {isListening ? <FaMicrophoneAlt size={28} /> : <FaMicrophone size={28} />}
-        </span>
-      </div>
       </div>
     </div>
   );

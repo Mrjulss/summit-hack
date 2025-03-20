@@ -1,0 +1,65 @@
+{
+    "eps": [
+        {
+            "name": "Qualcomm",
+            "value": 2.8649,
+            "color": "#002C5F"
+        },
+        {
+            "name": "IBM",
+            "value": 1.90,
+            "color": "#002C5F"
+        },
+        {
+            "name": "Alphabet",
+            "value": 1.422,
+            "color": "#002C5F"
+        },
+        {
+            "name": "Meta",
+            "value": 2.7530,
+            "color": "#002C5F"
+        },
+        {
+            "name": "Netflix",
+            "value": 1.244,
+            "color": "#002C5F"
+        },
+        {
+            "name": "Tesla",
+            "value": 0.8694,
+            "color": "#DE3919"
+        },
+        {
+            "name": "Apple",
+            "value": 1.5304,
+            "color": "#002C5F"
+        }
+    ],
+    "kpis": [
+        {
+            "company": "Qualcomm",
+            "title": "Dividend per share",
+            "value": 2.15,
+            "unit": "%"
+        },
+        {
+            "company": "IBM",
+            "title": "Dividend per share",
+            "value": 2.66,
+            "unit": "%"
+        },
+        {
+            "company": "Meta",
+            "title": "Dividend per share",
+            "value": 0.36,
+            "unit": "%"
+        },
+        {
+            "company": "Alphabet",
+            "title": "Dividend per share",
+            "value": 0.37,
+            "unit": "%"
+        }
+    ]
+}

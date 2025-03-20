@@ -1,11 +1,10 @@
 import React from 'react';
 import { LineChart } from '@mui/x-charts';
-import { Itim } from 'next/font/google';
 import { WidgetFrame } from './WidgetFrame';
 import { WidgetTitle } from './WidgetTitle';
 
 interface Timeseries {
-    timestamps: Date[];
+    timestamps: string[];  // Changed to string type
     values: number[];
 }
 
@@ -15,6 +14,11 @@ interface TimeseriesWidgetProps {
 }
 
 export function TimeseriesWidget({ data, title }: TimeseriesWidgetProps) {
+    // Validate and convert timestamps
+    const parseTimestamps = (timestamps: string[]) => {
+        return timestamps.map(t => new Date(t));
+    };
+
     // Validate all timeseries entries
     if (
         data.length === 0 ||
@@ -26,8 +30,14 @@ export function TimeseriesWidget({ data, title }: TimeseriesWidgetProps) {
         return <div>Invalid data</div>;
     }
 
+    // Convert string timestamps to Date objects
+    const processedData = data.map(series => ({
+        timestamps: parseTimestamps(series.timestamps),
+        values: series.values
+    }));
+
     // Assuming all timeseries share the same timestamps
-    const xAxisData = data[0].timestamps;
+    const xAxisData = processedData[0].timestamps;
 
     return (
         <WidgetFrame>
@@ -35,20 +45,23 @@ export function TimeseriesWidget({ data, title }: TimeseriesWidgetProps) {
                 {title}
             </WidgetTitle>
             <div className='items-center'>
-            <LineChart
-                xAxis={[{ 
-                    data: xAxisData,
-                    scaleType: 'time' 
-                }]}
-                series={data.map((series, index) => ({
-                    data: series.values,
-                    label: `Series ${index + 1}`,
-                }))}
-                width={300}
-                height={200}
-                colors={['#DE3919']} // Single color for all series
-            
-            />
+                <LineChart
+                    xAxis={[{ 
+                        data: xAxisData,
+                        scaleType: 'time',
+                        valueFormatter: (date) => date.toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric'
+                        })
+                    }]}
+                    series={processedData.map((series, index) => ({
+                        data: series.values,
+                        label: title,
+                    }))}
+                    width={300}
+                    height={200}
+                    colors={['#DE3919']}
+                />
             </div>
         </WidgetFrame>
     );

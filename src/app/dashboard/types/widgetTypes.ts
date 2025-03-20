@@ -1,1 +1,1 @@
-export type WidgetType = "customer" | "news" | "kpi" | "timeseries";
+export type WidgetType = "customer" | "news" | "kpi" | "timeseries" | "small-kpi";

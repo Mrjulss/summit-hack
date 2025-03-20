@@ -1,0 +1,75 @@
+[
+    {
+      "type": "timeseries",
+      "content": {
+        "title": "Performance of Tesla stock last week",
+        "data": [
+          {
+            "timestamps": [
+              "2025-03-13",
+              "2025-03-14",
+              "2025-03-17",
+              "2025-03-18",
+              "2025-03-19"
+            ],
+            "values": [
+              240.68,
+              249.98,
+              238.01,
+              225.31,
+              235.86
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "news",
+      "content": {
+        "headlines": [
+          {
+            "headline": "Tesla’s Autopilot and FSD are about to get even better, but don’t hold your breath for Tesla Vision",
+            "url": "https://www.teslarati.com/tesla-autopilot-fsd-improvements-tesla-vision-delay-elon-musk/"
+          },
+          {
+            "headline": "Tesla's Musk says Shanghai factory production is 'hurt' by chip shortage",
+            "url": "https://www.reuters.com/business/autos-transportation/teslas-musk-says-shanghai-factory-production-is-hurt-by-chip-shortage-2022-03-17/"
+          },
+          {
+            "headline": "Tesla's Giga Fest at its Texas factory risks wildlife, groups say",
+            "url": "https://www.reuters.com/business/autos-transportation/teslas-giga-fest-its-texas-factory-risks-wildlife-groups-say-2022-03-17/"
+          }
+        ]
+      }
+    },
+    {
+      "type": "kpi",
+      "content": {
+        "title": "Market Capitalisation",
+        "company": "Tesla Rg",
+        "value": "758840699369.04",
+        "unit": "USD"
+      }
+    },
+    {
+      "type": "kpi",
+      "content": {
+        "title": "Earnings per Share",
+        "company": "Tesla Rg",
+        "value": 0.106723,
+        "unit": "USD"
+      }
+    },
+    {
+      "type": "customer",
+      "content": {
+        "name": "Mike Echarge",
+        "age": "78",
+        "risk_aversion": "2",
+        "location": "Washington D.C.",
+        "profession": "Cardealer",
+        "source_of_wealth": "Real estate"
+      }
+    }
+  ]
+  

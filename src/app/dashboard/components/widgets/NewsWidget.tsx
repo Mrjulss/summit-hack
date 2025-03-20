@@ -15,7 +15,7 @@ export function NewsWidget({ headlines = [] }: NewsWidgetProps) {
   return (
     <WidgetFrame>
       <WidgetTitle>Relevant News</WidgetTitle>
-      <div className="flex flex-col gap-4 p-4">
+      <div className="flex flex-col gap-4 p-4 h-[calc(100%-3rem)] overflow-y-auto">
         {headlines.map((item, index) => (
           <div
             key={index}
