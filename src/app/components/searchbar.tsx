@@ -20,7 +20,7 @@ const Alert: React.FC<{ message: string; type: 'error' | 'info'; onClose: () => 
   }, [onClose]);
 
   return (
-    <div className={`fixed top-[66%] left-1/2 transform -translate-x-1/2 text-[#DE3919] px-4 py-2 rounded shadow-md z-50`}>
+    <div className="fixed top-[66%] left-1/2 transform -translate-x-1/2 text-[#DE3919] px-4 py-2 rounded shadow-md z-50">
       {message}
     </div>
   );
@@ -47,7 +47,6 @@ export default function Searchbar({ userDropdownPosition = 'bottom' }: Searchbar
   }, []);
 
   const handleAudioClick = async () => {
-    // Don't allow recording if API key is missing
     if (!process.env.NEXT_PUBLIC_OPENAI_API_KEY) {
       setAlertMessage('OpenAI API key is missing. Check your environment variables.');
       setAlertType('error');
@@ -108,7 +107,6 @@ export default function Searchbar({ userDropdownPosition = 'bottom' }: Searchbar
   // Handle keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Press "/" to focus on search
       if (e.key === '/' && !isListening) {
         const searchInput = document.querySelector('input[type="text"]') as HTMLInputElement;
         if (searchInput) {

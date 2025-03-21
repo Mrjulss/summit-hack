@@ -41,7 +41,7 @@ export function TimeseriesWidget({ data, title }: TimeseriesWidgetProps) {
 
     return (
         <WidgetFrame>
-            <WidgetTitle>
+            <WidgetTitle fontSize='xl'>
                 {title}
             </WidgetTitle>
             <div className='items-center'>

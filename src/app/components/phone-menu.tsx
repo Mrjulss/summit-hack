@@ -36,7 +36,7 @@ export function PhoneMenu() {
                 return;
             }
             setCurrentMessageIndex(index);
-        }, 1500);
+        }, 2000);
     };
 
     const stopListening = () => {
