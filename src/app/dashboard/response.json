@@ -1,128 +1,75 @@
 [
     {
-       "type":"timeseries",
-       "content":{
-          "title":"Performance of Apple stock",
-          "data":[
-             {
-                "timestamps":[
-                   "2025-03-13",
-                   "2025-03-14",
-                   "2025-03-17",
-                   "2025-03-18",
-                   "2025-03-19"
-                ],
-                "values":[
-                   209.68,
-                   213.49,
-                   214.0,
-                   212.69,
-                   215.24
-                ]
-             }
-          ]
-       }
+      "type": "timeseries",
+      "content": {
+        "title": "Performance of Tesla stock last week",
+        "data": [
+          {
+            "timestamps": [
+              "2025-03-13",
+              "2025-03-14",
+              "2025-03-17",
+              "2025-03-18",
+              "2025-03-19"
+            ],
+            "values": [
+              240.68,
+              249.98,
+              238.01,
+              225.31,
+              235.86
+            ]
+          }
+        ]
+      }
     },
     {
-       "type":"timeseries",
-       "content":{
-          "title":"Performance of Microsoft stock",
-          "data":[
-             {
-                "timestamps":[
-                   "2025-03-13",
-                   "2025-03-14",
-                   "2025-03-17",
-                   "2025-03-18",
-                   "2025-03-19"
-                ],
-                "values":[
-                   383.0,
-                   379.62,
-                   386.77,
-                   387.37,
-                   385.58
-                ]
-             }
-          ]
-       }
+      "type": "news",
+      "content": {
+        "headlines": [
+          {
+            "headline": "Tesla’s Autopilot and FSD are about to get even better, but don’t hold your breath for Tesla Vision",
+            "url": "https://www.teslarati.com/tesla-autopilot-fsd-improvements-tesla-vision-delay-elon-musk/"
+          },
+          {
+            "headline": "Tesla's Musk says Shanghai factory production is 'hurt' by chip shortage",
+            "url": "https://www.reuters.com/business/autos-transportation/teslas-musk-says-shanghai-factory-production-is-hurt-by-chip-shortage-2022-03-17/"
+          },
+          {
+            "headline": "Tesla's Giga Fest at its Texas factory risks wildlife, groups say",
+            "url": "https://www.reuters.com/business/autos-transportation/teslas-giga-fest-its-texas-factory-risks-wildlife-groups-say-2022-03-17/"
+          }
+        ]
+      }
     },
     {
-       "type":"timeseries",
-       "content":{
-          "title":"Performance of Nvidia stock",
-          "data":[
-             {
-                "timestamps":[
-                   "2025-03-13",
-                   "2025-03-14",
-                   "2025-03-17",
-                   "2025-03-18",
-                   "2025-03-19"
-                ],
-                "values":[
-                   115.58,
-                   121.67,
-                   119.53,
-                   115.43,
-                   117.52
-                ]
-             }
-          ]
-       }
+      "type": "kpi",
+      "content": {
+        "title": "Market Capitalisation",
+        "company": "Tesla Rg",
+        "value": "758840699369.04",
+        "unit": "USD"
+      }
     },
     {
-       "type":"kpi",
-       "content":{
-          "title":"Earnings Per Share",
-          "company":"Apple",
-          "value":0.742952,
-          "unit":"USD"
-       }
+      "type": "kpi",
+      "content": {
+        "title": "Earnings per Share",
+        "company": "Tesla Rg",
+        "value": 0.106723,
+        "unit": "USD"
+      }
     },
     {
-       "type":"kpi",
-       "content":{
-          "title":"Earnings Per Share",
-          "company":"Microsoft",
-          "value":1.8362,
-          "unit":"USD"
-       }
-    },
-    {
-       "type":"kpi",
-       "content":{
-          "title":"Earnings Per Share",
-          "company":"NVIDIA",
-          "value":0.054045,
-          "unit":"USD"
-       }
-    },
-    {
-       "type":"news",
-       "content":{
-          "headlines":[
-             {
-                "headline":"GM to use Nvidia AI chips, software to automate vehicles, factories",
-                "url":"https://www.reuters.com/technology/artificial-intelligence/gm-use-nvidia-ai-chips-software-automate-vehicles-factories-2025-03-18/?utm_source=openai"
-             },
-             {
-                "headline":"Apple sued for false advertising over Apple Intelligence",
-                "url":"https://www.axios.com/2025/03/20/apple-suit-false-advertising-ai-intelligence?utm_source=openai"
-             }
-          ]
-       }
-    },
-    {
-       "type":"customer",
-       "content":{
-          "name":"Tom Faste",
-          "age":"24",
-          "risk_aversion":"3",
-          "location":"DE",
-          "profession":"Privatier",
-          "source_of_wealth":"Inheritance"
-       }
+      "type": "customer",
+      "content": {
+        "name": "Mike Echarge",
+        "age": "78",
+        "risk_aversion": "2",
+        "location": "Washington D.C.",
+        "profession": "Cardealer",
+        "source_of_wealth": "Real estate"
+      }
     }
-]
+  ]
   
