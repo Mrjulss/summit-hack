@@ -1,0 +1,120 @@
+[
+  {
+     "type":"news",
+     "content":{
+        "headlines":[
+           {
+              "headline":"Roche's Evrysdi continues to show long-term efficacy and safety in a broad population of people with spinal muscular atrophy (SMA)",
+              "url":"https://www.roche.com/media/releases/med-cor-2022-02-28.htm"
+           },
+           {
+              "headline":"Roche to present new Evrysdi data at MDA 2022",
+              "url":"https://www.globenewswire.com/news-release/2022/03/15/2403965/0/en/Roche-to-present-new-Evrysdi-data-at-MDA-2022.html"
+           },
+           {
+              "headline":"Roche's faricimab meets primary endpoint in two global phase III studies in diabetic macular edema",
+              "url":"https://www.roche.com/media/releases/med-cor-2022-02-14.htm"
+           }
+        ]
+     }
+  },
+  {
+     "type":"kpi",
+     "content":{
+        "title":"Earnings per share",
+        "company":"Roche Hldg DR",
+        "value":3.6351,
+        "unit":"CHF"
+     }
+  },
+  {
+     "type":"kpi",
+     "content":{
+        "title":"Dividend Yield of Roche Stock",
+        "company":"Roche Hldg DR",
+        "value":3.1689,
+        "unit":"%"
+     }
+  },
+  {
+     "type":"kpi",
+     "content":{
+        "title":"Market Capitalisation",
+        "company":"Roche Hldg DR",
+        "value":215054442470,
+        "unit":"CHF"
+     }
+  },
+  {
+     "type":"kpi",
+     "content":{
+        "title":"Roche Hldg DR",
+        "company":"CH0012032048",
+        "value":0.124,
+        "unit":"SWX - \"SIX Swiss Exchange\" (4)"
+     }
+  },
+  {
+     "type":"customer",
+     "content":{
+        "name":"Tom Faste",
+        "age":"24",
+        "risk_aversion":"3",
+        "location":"DE",
+        "profession":"Privatier",
+        "source_of_wealth":"Inheritance"
+     }
+  },
+  {
+     "type":"timeseries",
+     "content":{
+        "title":"Roche's Stock Development Over the Last Month",
+        "data":[
+           {
+              "timestamps":[
+                 "2025-02-21",
+                 "2025-02-24",
+                 "2025-02-25",
+                 "2025-02-26",
+                 "2025-02-27",
+                 "2025-02-28",
+                 "2025-03-03",
+                 "2025-03-04",
+                 "2025-03-05",
+                 "2025-03-06",
+                 "2025-03-07",
+                 "2025-03-10",
+                 "2025-03-11",
+                 "2025-03-12",
+                 "2025-03-13",
+                 "2025-03-14",
+                 "2025-03-17",
+                 "2025-03-18",
+                 "2025-03-19"
+              ],
+              "values":[
+                 298.4,
+                 298.1,
+                 299.3,
+                 299.9,
+                 298.3,
+                 299.2,
+                 302.6,
+                 304.2,
+                 303.2,
+                 302.7,
+                 307.0,
+                 307.4,
+                 296.5,
+                 307.3,
+                 303.1,
+                 305.8,
+                 311.1,
+                 309.2,
+                 306.0
+              ]
+           }
+        ]
+     }
+  }
+]

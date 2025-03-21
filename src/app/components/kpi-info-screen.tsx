@@ -71,13 +71,13 @@ export default function KpiInfoScreen({ onClose, company }: KpiInfoScreenProps) 
                     {/* KPI Widgets: EPS for the selected company and other KPIs */}
                     <div className="flex flex-row justify-around items-center mt-6">
                         {kpiItems.map(
-                            (kpi: { title: string; value: number; unit: string }, index: React.Key | null | undefined) => (
+                            (kpi: { title: string; value: number; unit: string; company: string }, index: React.Key | null | undefined) => (
                                 <SmallKpiWidget
                                     key={index}
                                     title={kpi.title}
                                     value={kpi.value}
                                     unit={kpi.unit}
-                                    company={company}
+                                    company={kpi.company}
                                 />
                             )
                         )}
